@@ -1,0 +1,5 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
+<path fill="#000" d="M12,0C5.373,0,0,5.373,0,12s5.373,12,12,12s12-5.373,12-12S18.627,0,12,0L12,0z M12,23C5.935,23,1,18.064,1,12
+	C1,5.935,5.935,1,12,1c6.064,0,11,4.935,11,11C23,18.064,18.064,23,12,23L12,23z M12,13H6v1h7V4.041h-1V13L12,13z"/>
+</svg>

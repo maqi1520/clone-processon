@@ -1,0 +1,452 @@
+@font-face {
+  font-family: "diagramingicons"; /* Project id 1943838 */
+  src: url('iconfont.woff2?t=1628235809503') format('woff2')
+}
+
+.diagraming-icons {
+    font-family: "diagramingicons" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-svg {
+    width: 20px;
+    height: 20px;
+    /*  vertical-align: -0.15em; */
+    fill: currentColor;
+    overflow: hidden;
+}
+.icon-color {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.iconjiantou-copy:before {
+  content: "\e869";
+}
+
+.iconjiantou-copy-copy:before {
+  content: "\e86a";
+}
+
+.iconjiantou-copy-copy1:before {
+  content: "\e86b";
+}
+
+.iconjiantou:before {
+  content: "\e690";
+}
+
+.iconxuanzhuan2-01:before {
+  content: "\e783";
+}
+
+.icongengduo_huaban1:before {
+  content: "\e868";
+}
+
+.iconxinzengwenjianjia_huaban1:before {
+  content: "\e866";
+}
+
+.iconshezhi_huaban1:before {
+  content: "\e867";
+}
+
+.iconpadshipei_daohang21:before {
+  content: "\e666";
+}
+
+.iconpadshipei_daohang2:before {
+  content: "\e665";
+}
+
+.iconpadshipei_suoxiao:before {
+  content: "\e662";
+}
+
+.iconpadshipei_quanping:before {
+  content: "\e664";
+}
+
+.iconpadshipei_fangda:before {
+  content: "\e661";
+}
+
+.iconpad_xinzeng22:before {
+  content: "\e748";
+}
+
+.iconpad_xuanzhuan:before {
+  content: "\e65a";
+}
+
+.iconpad_xinzeng2:before {
+  content: "\e658";
+}
+
+.iconpad_xinzeng:before {
+  content: "\e659";
+}
+
+.iconshanchuyilie_huaban11:before {
+  content: "\e7e5";
+}
+
+.iconshanchuyihang_huaban11:before {
+  content: "\e7e6";
+}
+
+.iconshanchuyilie_huaban1:before {
+  content: "\e7d7";
+}
+
+.iconshanchuyihang_huaban1:before {
+  content: "\e7d8";
+}
+
+.iconzuochayilie_huaban1_huaban1:before {
+  content: "\e7d3";
+}
+
+.iconyouchayilie_huaban1:before {
+  content: "\e7d4";
+}
+
+.iconxiachayihang_huaban1:before {
+  content: "\e7d5";
+}
+
+.iconshangchayihang_huaban1:before {
+  content: "\e7d6";
+}
+
+.iconwenzichuizhi_huaban1:before {
+  content: "\e7c7";
+}
+
+.iconshuipingwenzi_huaban1:before {
+  content: "\e7c8";
+}
+
+.iconyongdaoshuiping_huaban1:before {
+  content: "\e7c9";
+}
+
+.iconyongdaochuizhi_huaban1:before {
+  content: "\e7ca";
+}
+
+.iconwuduandian_huaban1_huaban1:before {
+  content: "\e7ac";
+}
+
+.iconwuduandian_huaban1_huaban1-copy:before {
+  content: "\e7ad";
+}
+
+.iconiconfonticonfontclose:before {
+  content: "\e637";
+}
+
+.iconbianji:before {
+  content: "\e78d";
+}
+
+.iconsousuo:before {
+  content: "\e78c";
+}
+
+.iconmeihua_huaban1:before {
+  content: "\e789";
+}
+
+.iconzhuti_huaban1:before {
+  content: "\e785";
+}
+
+.iconziti_huaban1:before {
+  content: "\e784";
+}
+
+.iconxiahuaxian_huaban1:before {
+  content: "\e782";
+}
+
+.iconhome_upload-:before {
+  content: "\e68f";
+}
+
+.icongrid:before {
+  content: "\e760";
+}
+
+.iconpadding:before {
+  content: "\e761";
+}
+
+.iconline_height:before {
+  content: "\e762";
+}
+
+.iconpicture:before {
+  content: "\e75e";
+}
+
+.icontext:before {
+  content: "\e75f";
+}
+
+.iconzoom_in:before {
+  content: "\e75b";
+}
+
+.iconchoose:before {
+  content: "\e75c";
+}
+
+.iconzoom_out:before {
+  content: "\e75d";
+}
+
+.iconcopy:before {
+  content: "\e757";
+}
+
+.iconpaste:before {
+  content: "\e758";
+}
+
+.icondelet:before {
+  content: "\e759";
+}
+
+.iconcut:before {
+  content: "\e75a";
+}
+
+.iconlock:before {
+  content: "\e753";
+}
+
+.iconunlock:before {
+  content: "\e754";
+}
+
+.iconlink:before {
+  content: "\e755";
+}
+
+.iconmagic:before {
+  content: "\e756";
+}
+
+.iconlevel_top:before {
+  content: "\e751";
+}
+
+.iconlevel_bootom:before {
+  content: "\e752";
+}
+
+.iconalign_left:before {
+  content: "\e749";
+}
+
+.iconalign_vertical_center:before {
+  content: "\e74a";
+}
+
+.iconalign_center:before {
+  content: "\e74b";
+}
+
+.iconalign_bottom:before {
+  content: "\e74c";
+}
+
+.iconhorizontal_arrange:before {
+  content: "\e74d";
+}
+
+.iconalign_top:before {
+  content: "\e74e";
+}
+
+.iconalign_right:before {
+  content: "\e74f";
+}
+
+.iconvertical_arrange:before {
+  content: "\e750";
+}
+
+.iconarrow_style11-copy:before {
+  content: "\e764";
+}
+
+.iconarrow_style9-copy:before {
+  content: "\e76c";
+}
+
+.iconarrow_style7-copy:before {
+  content: "\e765";
+}
+
+.iconarrow_style8-copy:before {
+  content: "\e766";
+}
+
+.iconarrow_style10-copy:before {
+  content: "\e76d";
+}
+
+.iconarrow_style6-copy:before {
+  content: "\e767";
+}
+
+.iconarrow_style5:before {
+  content: "\e73e";
+}
+
+.iconarrow_style2:before {
+  content: "\e73f";
+}
+
+.iconarrow_style3:before {
+  content: "\e740";
+}
+
+.iconarrow_style4:before {
+  content: "\e741";
+}
+
+.iconarrow_style6:before {
+  content: "\e742";
+}
+
+.iconarrow_style8:before {
+  content: "\e743";
+}
+
+.iconarrow_style10:before {
+  content: "\e744";
+}
+
+.iconarrow_style7:before {
+  content: "\e745";
+}
+
+.iconarrow_style9:before {
+  content: "\e746";
+}
+
+.iconarrow_style4-copy:before {
+  content: "\e768";
+}
+
+.iconarrow_style11:before {
+  content: "\e747";
+}
+
+.iconarrow_style3-copy:before {
+  content: "\e769";
+}
+
+.iconarrow_style2-copy:before {
+  content: "\e76a";
+}
+
+.iconarrow_style5-copy:before {
+  content: "\e76b";
+}
+
+.iconline_style3:before {
+  content: "\e73b";
+}
+
+.iconline_style2:before {
+  content: "\e73c";
+}
+
+.iconline_style1:before {
+  content: "\e73d";
+}
+
+.iconline_weight:before {
+  content: "\e737";
+}
+
+.iconbackground_color:before {
+  content: "\e738";
+}
+
+.iconline_dashed:before {
+  content: "\e739";
+}
+
+.iconline-color:before {
+  content: "\e73a";
+}
+
+.icontext-top:before {
+  content: "\e730";
+}
+
+.icontext-bottom:before {
+  content: "\e731";
+}
+
+.icontext-center:before {
+  content: "\e732";
+}
+
+.icontext_align_center:before {
+  content: "\e733";
+}
+
+.iconfont-color:before {
+  content: "\e734";
+}
+
+.icontext_align_left:before {
+  content: "\e735";
+}
+
+.icontext_align_right:before {
+  content: "\e736";
+}
+
+.icontheme_sytle_huaban1:before {
+  content: "\e729";
+}
+
+.iconundo_huaban1:before {
+  content: "\e72a";
+}
+
+.iconredo:before {
+  content: "\e72b";
+}
+
+.iconformat_painter:before {
+  content: "\e72c";
+}
+
+.iconunderline:before {
+  content: "\e72d";
+}
+
+.iconbold:before {
+  content: "\e72e";
+}
+
+.iconitalic:before {
+  content: "\e72f";
+}
+

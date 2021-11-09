@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      margin: 24px 0;
+    }
+    body {
+      font-size: 14px;
+    }
+    input[type="submit"],
+    button {
+      padding: 8px 24px;
+      font-size: 14px;
+      border: 1px solid;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    input[type="password"],
+    input[type="email"],
+    input[type="text"] {
+      padding: 8px 12px;
+
+      border: 1px solid;
+      min-width: 220px;
+    }
+    .btn {
+      cursor: pointer;
+      padding: 8px 12px;
+      color: #fff;
+      background-color: #2da44e;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    #list > div,
+    form > div {
+      margin-top: 24px;
+    }
+    .empty {
+      text-align: center;
+      padding: 24px;
+    }
+    .ml-2 {
+      margin-left: 8px;
+    }
+    .flex {
+      display: flex;
+    }
+    .justify-between {
+      justify-content: space-between;
+    }
+    .items-center {
+      align-items: center;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .max-w-5xl {
+      max-width: 1024px;
+    }
+  </style>
+  <body>
+    <div class="max-w-5xl mx-auto">
+      <header class="flex justify-between items-center">
+        <h1>Clone ProcessOn</h1>
+        <span id="user-info"></span>
+      </header>
+      <div id="container"></div>
+    </div>
+    <script src="./scripts_bin/zh/jquery.js"></script>
+    <script>
+      $.ajaxSetup({
+        cache: false,
+      });
+
+      $(document).on("ajaxError", function (e, request) {
+        switch (request.status) {
+          case 500:
+            console.log("服务器错误");
+          case 401:
+            showLogin();
+        }
+      });
+      $(document).on("submit", "form", function (e) {
+        e.preventDefault();
+        let oForm = $(this);
+        let url = oForm.attr("action");
+        let method = oForm.attr("method");
+        let data = oForm.serializeArray();
+        let formData = {};
+        for (const item of data) {
+          if (item.value === "") {
+            alert(`请输入${item.name}`);
+            return;
+          } else {
+            formData[item.name] = item.value;
+          }
+        }
+        $.ajax({
+          url,
+          type: method,
+          data,
+          success: (res) => {
+            if (res.success) {
+              getUser();
+            } else {
+              alert(res.message);
+            }
+          },
+        });
+      });
+      function showLogin() {
+        $("#user-info").html("");
+        $("#container").html(
+          `<div>
+            <h2>欢迎回来</h2>
+            <form method="POST" action="/api/auth/signin">
+              <div><input  placeholder="邮箱" type="email" name="email" /></div>
+              <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
+              <div><input type="submit" value="登录" /></div>
+              <div><a class="btn" href="/api/github/login">github 账号登录</a></div>
+              <div>如果您没有账号，您可以 <a href="javascript:showRegister()">立即注册</a></div>
+            </form>
+          </div>`
+        );
+      }
+
+      function showRegister() {
+        $("#container").html(`
+        <div>
+          <h2>创建一个账号</h2>
+          <form method="POST" action="/api/auth/register">
+            <div><input placeholder="邮箱" type="email" name="email" /></div>
+            <div><input placeholder="昵称" minLength="6" maxLength="20" type="text" name="name" /></div>
+            <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
+            <div><input type="submit" value="注册" /></div>
+            <div>已有账号，您可以 <a href="javascript:showLogin()">立即登录</a></div>
+          </form>
+        </div>`);
+      }
+      function getList() {
+        $.get("/diagraming", (res) => {
+          const { list = [] } = res;
+          if (list.length > 0) {
+            let html = "";
+            list.forEach((item) => {
+              html += `<div class="flex justify-between">
+            <a href="/processOn.html?id=${item.id}">${item.title}</a>
+            <span><span>${new Date(item.lastModify).toLocaleString()}</span>
+            <a class="ml-2" href="javascript:;" data-id="${
+              item.id
+            }" class="js-remove">删除</a></span>
+          </div>`;
+            });
+            $("#list").html(html);
+          } else {
+            $("#list").html(`<div class="empty">暂无数据</div>`);
+          }
+        });
+        bindRemove();
+      }
+
+      function bindRemove() {
+        $(document).on("click", ".js-remove", (e) => {
+          const id = $(e.target).data("id");
+          $.post("/diagraming/remove", { id }, (res) => {
+            getList();
+          });
+        });
+      }
+
+      function bindCreate() {
+        $(document).on("click", "#create", () => {
+          $.post(
+            "/diagraming/create",
+            {
+              title: "未命名文件",
+            },
+            (res) => {
+              window.location.href = `/processOn.html?id=${res.id}`;
+            }
+          );
+        });
+
+        $(document).on("click", "#signout", () => {
+          $.post("/api/auth/signout", (res) => {
+            getUser();
+          });
+        });
+      }
+
+      function getUser() {
+        $.get("/api/user/me", (res) => {
+          $("#user-info").html(
+            `<span>${res.name}</span>
+            <button  class="ml-2" id="signout">退出</button> `
+          );
+          $("#container").html(
+            `<div> 
+                <div> <button class="btn" id="create">新建流程图</button></div> 
+                <div id="list"></div>
+              </div>`
+          );
+          getList();
+          bindCreate();
+        });
+      }
+      getUser();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String    @id @default(uuid())
+  name           String?
+  password       String
+  email          String    @unique
+  avatar_url     String?
+  emailCheckCode String?
+  checked        Boolean   @default(true)
+  posts          Post[]
+  historys       History[]
+  charts         Chart[]
+}
+
+model Post {
+  id        String  @id @default(uuid())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  String
+}
+
+model Comment {
+  id      String  @id @default(uuid())
+  shapeId String?
+  name    String?
+  replyId String?
+  time    Int
+  content String
+  userId  String
+  chartId String
+  chart   Chart   @relation(fields: [chartId], references: [id])
+}
+
+model Chart {
+  id         String    @id @default(uuid())
+  title      String
+  deleted    Boolean   @default(false)
+  elements   Json
+  page       Json
+  theme      Json?
+  ownerId    String
+  owner      User      @relation(fields: [ownerId], references: [id])
+  historys   History[]
+  comments   Comment[]
+  createTime DateTime  @default(now()) @db.Timestamp
+  lastModify DateTime  @default(now()) @db.Timestamp
+}
+
+model History {
+  id         String   @id @default(uuid())
+  title      String
+  remark     String
+  elements   Json
+  page       Json
+  theme      Json?
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  chartId    String
+  chart      Chart    @relation(fields: [chartId], references: [id])
+  createTime DateTime @default(now()) @db.Timestamp
+}
