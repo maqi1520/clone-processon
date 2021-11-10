@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello, World!</title>
+    <title>Clone ProcessOn</title>
   </head>
   <style>
     * {
@@ -108,10 +108,11 @@
           type: method,
           data,
           success: (res) => {
+            if (res.message) {
+              alert(res.message);
+            }
             if (res.success) {
               getUser();
-            } else {
-              alert(res.message);
             }
           },
         });
@@ -122,8 +123,8 @@
           `<div>
             <h2>欢迎回来</h2>
             <form method="POST" action="/api/auth/signin">
-              <div><input  placeholder="邮箱" type="email" name="email" /></div>
-              <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
+              <div><input value="test@test.com" placeholder="邮箱" type="email" name="email" /></div>
+              <div><input value="test123" placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
               <div><input type="submit" value="登录" /></div>
               <div><a class="btn" href="/api/github/login">github 账号登录</a></div>
               <div>如果您没有账号，您可以 <a href="javascript:showRegister()">立即注册</a></div>
@@ -138,10 +139,11 @@
           <h2>创建一个账号</h2>
           <form method="POST" action="/api/auth/register">
             <div><input placeholder="邮箱" type="email" name="email" /></div>
-            <div><input placeholder="昵称" minLength="6" maxLength="20" type="text" name="name" /></div>
+            <div><input placeholder="昵称" maxLength="20" type="text" name="name" /></div>
             <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
             <div><input type="submit" value="注册" /></div>
             <div>已有账号，您可以 <a href="javascript:showLogin()">立即登录</a></div>
+            <div>测试账号：test@test.com 密码 test123</div>
           </form>
         </div>`);
       }
