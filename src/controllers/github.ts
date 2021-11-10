@@ -52,7 +52,7 @@ authRouter.get("/oauth/callback", async (req, res) => {
   });
 
   console.log(githubres.data);
-  const { email, name } = githubres.data;
+  const { email, name, avatar_url } = githubres.data;
 
   let user = await prisma.user.findUnique({
     where: {
