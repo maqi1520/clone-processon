@@ -56,6 +56,8 @@ $.get("/api/user/me", (res) => {
   userName = res.name;
   $("#user-name").html(res.name);
   if (res.avatar_url) {
-    $("#user-avater").attr("src", res.avatar_url);
+    $(".js-user-avater").each(function () {
+      $(this).attr("src", res.avatar_url);
+    });
   }
 });
