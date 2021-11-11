@@ -156,9 +156,9 @@
               html += `<div class="flex justify-between">
             <a href="/processOn.html?id=${item.id}">${item.title}</a>
             <span><span>${new Date(item.lastModify).toLocaleString()}</span>
-            <a class="ml-2" href="javascript:;" data-id="${
+            <a class="ml-2 js-remove" href="javascript:;" data-id="${
               item.id
-            }" class="js-remove">删除</a></span>
+            }">删除</a></span>
           </div>`;
             });
             $("#list").html(html);
@@ -172,6 +172,7 @@
       function bindRemove() {
         $(document).on("click", ".js-remove", (e) => {
           const id = $(e.target).data("id");
+          console.log(id);
           $.post("/diagraming/remove", { id }, (res) => {
             getList();
           });
