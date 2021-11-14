@@ -5422,7 +5422,7 @@ var Dock = {
           $("#history_more").hide();
         }
         if (a) {
-          Dock.historyPage = -1;
+          Dock.historyPage = 0;
           b.html("");
         }
         for (var h = 0, f = j.length; h < f; h++) {
