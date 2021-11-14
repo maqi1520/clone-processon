@@ -2964,7 +2964,7 @@ var UI = {
         var f = true;
         for (var d = 0; d < b.length; d++) {
           var e = b[d];
-          
+
           if (!Schema.selectedCategories.includes(e)) {
             f = false;
             break;
@@ -3019,26 +3019,26 @@ var UI = {
         return $(this).val();
       })
       .get();
-      if(d.includes('network_aliyun')){
-        d=d.concat([
-          "ali_app_service",
-          "ali_database",
-          "ali_devel_resource",
-          "ali_domain_website",
-          "ali_elastic_calc",
-          "ali_industry_cloud",
-          "ali_internet_midd",
-          "ali_large_scale_calc",
-          "ali_manage_monitor",
-          "ali_mobile_service",
-          "ali_network",
-          "ali_other_products",
-          "ali_security",
-          "ali_storage_cdn"
-      ])
+    if (d.includes("network_aliyun")) {
+      d = d.concat([
+        "ali_app_service",
+        "ali_database",
+        "ali_devel_resource",
+        "ali_domain_website",
+        "ali_elastic_calc",
+        "ali_industry_cloud",
+        "ali_internet_midd",
+        "ali_large_scale_calc",
+        "ali_manage_monitor",
+        "ali_mobile_service",
+        "ali_network",
+        "ali_other_products",
+        "ali_security",
+        "ali_storage_cdn",
+      ]);
     }
-    if(d.includes('network_aws2019')){
-      d=d.concat([
+    if (d.includes("network_aws2019")) {
+      d = d.concat([
         "aws2019_groups",
         "aws2019_general",
         "aws2019_compute",
@@ -3064,58 +3064,55 @@ var UI = {
         "aws2019_acm",
         "aws2019_blockchain",
         "aws2019_ce",
-        "aws2019_satellite"
-    ])
-  }
-  if(d.includes('network_aws')){
-    d=d.concat([
-      "aws_analytics",
-      "aws_app_servers",
-      "aws_compute",
-      "aws_database",
-      "aws_devel_tools",
-      "aws_enterprise_apps",
-      "aws_general",
-      "aws_iot",
-      "aws_mgmt_tools",
-      "aws_mobile_servers",
-      "aws_networking",
-      "aws_sdk",
-      "aws_security_identity",
-      "aws_storage",
-      "aws_workforce",
-      "aws_groups"
-  ])
-}
-if(d.includes('network_cisco')){
-  d=d.concat([
-    "cisco_bulidings",
-    "cisco_computers_peripherals",
-    "cisco_control_module",
-    "cisco_directors",
-    "cisco_hubs_gateways",
-    "cisco_misc",
-    "cisco_modems_phones",
-    "cisco_people",
-    "cisco_routers",
-    "cisco_security",
-    "cisco_servers",
-    "cisco_storage",
-    "cisco_switches",
-    "cisco_wireless",
-    "standard"
-])
-}
-if(d.includes('network_azure')){
-  d=d.concat([
-    "azure"
-])
-}
+        "aws2019_satellite",
+      ]);
+    }
+    if (d.includes("network_aws")) {
+      d = d.concat([
+        "aws_analytics",
+        "aws_app_servers",
+        "aws_compute",
+        "aws_database",
+        "aws_devel_tools",
+        "aws_enterprise_apps",
+        "aws_general",
+        "aws_iot",
+        "aws_mgmt_tools",
+        "aws_mobile_servers",
+        "aws_networking",
+        "aws_sdk",
+        "aws_security_identity",
+        "aws_storage",
+        "aws_workforce",
+        "aws_groups",
+      ]);
+    }
+    if (d.includes("network_cisco")) {
+      d = d.concat([
+        "cisco_bulidings",
+        "cisco_computers_peripherals",
+        "cisco_control_module",
+        "cisco_directors",
+        "cisco_hubs_gateways",
+        "cisco_misc",
+        "cisco_modems_phones",
+        "cisco_people",
+        "cisco_routers",
+        "cisco_security",
+        "cisco_servers",
+        "cisco_storage",
+        "cisco_switches",
+        "cisco_wireless",
+        "standard",
+      ]);
+    }
+    if (d.includes("network_azure")) {
+      d = d.concat(["azure"]);
+    }
 
     var b = "";
     var c = { action: "changeSchema", categories: d.join(",") };
-    
-    
+
     CLB.send(c);
     Designer.setSchema(d, function () {
       $("#shapes_dialog").dlg("close");
@@ -5393,7 +5390,7 @@ var Dock = {
     var b = $("#history_versions"),
       d = "";
     if (a) {
-      this.historyPage = -1;
+      this.historyPage = 0;
     }
     var c = ++this.historyPage;
     if (chartId == "") {

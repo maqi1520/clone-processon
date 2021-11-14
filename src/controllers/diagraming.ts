@@ -193,10 +193,16 @@ router.post("/msg", protect, async (req: Req, res) => {
 router.post("/add_version", protect, async (req: Req, res) => {
   const { def, chartId, remark } = req.body;
   const saveData = JSON.parse(def) as Prisma.ChartCreateInput;
+
+  let result = await prisma.chart.findUnique({
+    where: {
+      id: chartId,
+    },
+  });
   const newVersionData = await prisma.history.create({
     data: {
       remark,
-      title: saveData.title,
+      title: result.title,
       elements: saveData.elements,
       page: saveData.page,
       theme: saveData.theme ? saveData.theme : undefined,
@@ -249,6 +255,9 @@ router.post("/del_version", protect, async (req: Req, res) => {
 router.get("/get_versions", protect, async (req: Req, res) => {
   const chartId = req.query.chartId as string;
   const page = req.query.page as string;
+  console.log(chartId);
+  console.log(page);
+
   const result = await prisma.history.findMany({
     where: {
       chartId,
