@@ -121,6 +121,7 @@ authRouter.post("/signin", async (req, res) => {
       success: false,
       message: "邮箱未注册！",
     });
+    return;
   }
   if (!user.checked) {
     res.json({

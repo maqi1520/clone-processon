@@ -255,8 +255,6 @@ router.post("/del_version", protect, async (req: Req, res) => {
 router.get("/get_versions", protect, async (req: Req, res) => {
   const chartId = req.query.chartId as string;
   const page = req.query.page as string;
-  console.log(chartId);
-  console.log(page);
 
   const result = await prisma.history.findMany({
     where: {

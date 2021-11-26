@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>未命名文件</title>
+    <meta
+      name="keyword"
+      content="在线思维导图,思维导图,脑图,ProcessOn脑图,概念图,思路图"
+    />
+    <meta
+      name="description"
+      content="ProcessOn思维导图，便捷的在线脑图编辑工具。"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//at.alicdn.com/t/font_142592_cb1svm7xwkn.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/css/view-111c93c8.css"
+      type="text/css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/themes/default/diagraming/designer.css?1636294827"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/themes/default/katex.min.css?1636294827"
+    />
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/jquery.js?_=1636294824"
+    ></script>
+    <script
+      src="/assets/js/katex.min-a176bbe4.js"
+      charset="UTF-8"
+      type="text/javascript"
+    ></script>
+    <script
+      src="/assets/js/util-a176bbe4.js"
+      charset="UTF-8"
+      type="text/javascript"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/diagraming/schema/schema.js?_=1636294824"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/diagraming/schema/themes.js?_=1636294824"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/diagraming/designer.core.js?_=1636294824"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/diagraming/designer.methods.js?_=1636294824"
+    ></script>
+    <script type="text/javascript">
+      var chartId = Util.getUrlParams("id");
+      var localRuntime = false;
+      var isView = true;
+      var role = "viewer";
+      var tutorial = false;
+      var showToolbar = false;
+      var showCommentIco = false;
+      var cteamId = "";
+      var corgId = "";
+      var tempId = "618ca0c81efad41bf2c04976";
+      var isMember = "";
+      var embed = true;
+    </script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/scripts_bin/zh/popular/chartview.js?_=1636294824"
+    ></script>
+    <script type="text/javascript">
+      function resizeMax() {
+        Designer.zoomIn();
+        var current = Designer.config.scale;
+        $(".embed_resize")
+          .children("label")
+          .text(parseInt(current * 100) + "%");
+      }
+      function resizeMin() {
+        Designer.zoomOut();
+        var current = Designer.config.scale;
+        $(".embed_resize")
+          .children("label")
+          .text(parseInt(current * 100) + "%");
+      }
+    </script>
+    <style type="text/css">
+      #viewport {
+        box-shadow: none;
+      }
+      html,
+      body {
+        background-image: none;
+      }
+      body {
+        overflow: hidden;
+        margin: 0px;
+        padding: 0px;
+      }
+      body * {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+      }
+      .alert.error {
+        text-align: center;
+        font-size: 15px;
+        margin: 50px;
+      }
+      .embed_btn {
+        display: block;
+        width: 200px;
+        margin: auto;
+        line-height: 30px;
+        margin-top: -45px;
+      }
+      #chartDiv {
+        position: absolute;
+        cursor: move;
+        top: 0px;
+        left: 0px;
+      }
+      .embed_logo {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        margin-top: -13px;
+        border: none;
+      }
+      .embed_open_chart {
+        padding: 0px 10px;
+        height: 26px !important;
+        line-height: 26px !important;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -13px;
+      }
+      .embed_title {
+        z-index: 99999;
+        display: block;
+        min-height: 25px;
+        line-height: 25px;
+        padding: 2px 10px;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(0, 0, 0, 0.4);
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+        border-radius: 2px;
+      }
+      .embed_title:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .embed_title span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 290px;
+        font-weight: bold;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .embed_title a {
+        font-size: 13px;
+        color: #fff;
+        font-weight: 400;
+        margin-left: 8px;
+        vertical-align: -1px;
+        text-decoration: none;
+      }
+      .embed_resize {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        z-index: 9;
+        background: rgba(0, 0, 0, 0.3);
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+        border-radius: 2px;
+        padding: 2px 10px;
+      }
+      .embed_resize .pro-btn {
+        line-height: 25px;
+        height: 25px;
+        width: 20px;
+        display: inline-block;
+        padding: 0px;
+        position: relative;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+      }
+      .embed_resize:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .embed_resize label {
+        font-weight: 400;
+        font-size: 12px;
+        width: 40px;
+        text-align: center;
+        display: inline-block;
+        color: #fff;
+        vertical-align: 1px;
+        font-weight: 700;
+      }
+      .embed_resize .pro-btn:hover {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+      }
+      .embed_preview,
+      .mind-canvas-con {
+        position: fixed;
+        right: 8px;
+        bottom: 8px;
+        border: 1px solid #bbb;
+        width: 120px;
+        height: 80px;
+        overflow: hidden;
+        z-index: 9;
+        border-radius: 2px;
+        background: #fff;
+      }
+      .embed_preview .preview_box {
+        border: 2px solid #63abf7;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        cursor: move;
+        background: rgba(255, 255, 255, 0);
+        border-radius: 2px;
+      }
+      .logo {
+        display: inline-block;
+        background: #4386f5;
+        border-radius: 50%;
+        color: #fff;
+        padding: 8px 8px;
+        margin-left: 6px;
+        font-size: 40px;
+        position: relative;
+        box-shadow: 1px 1px 6px #ccc;
+      }
+      .logo .logo-dot {
+        width: 68px;
+        height: 6px;
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -34px;
+        margin-top: -3px;
+      }
+      .logo .logo-dot:after {
+        width: 6px;
+        background: #4386f5;
+        height: 6px;
+        display: inline-block;
+        position: absolute;
+        right: -4px;
+        border-radius: 50%;
+        content: "";
+      }
+      .rotate {
+        animation: 0.8s infinite rotate;
+        -webkit-animation: 0.8s infinite rotate;
+        -o-animation: 0.8s infinite rotate;
+        -moz-animation: 0.8s infinite rotate;
+        -ms-animation: 0.8s infinite rotate;
+      }
+      @-webkit-keyframes rotate {
+        from {
+          -webkit-transform: rotate(0);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes rotate {
+        from {
+          -moz-transform: rotate(0);
+        }
+        to {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      @-ms-keyframes rotate {
+        from {
+          -ms-transform: rotate(0);
+        }
+        to {
+          -ms-transform: rotate(360deg);
+        }
+      }
+      @-o-keyframes rotate {
+        from {
+          -o-transform: rotate(0);
+        }
+        to {
+          -o-transform: rotate(360deg);
+        }
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="support_canvas" style="display: none"></canvas>
+    <span class="embed_title" title="点击在新页面打开源文件" title_pos="right"
+      ><span
+        ><a target="_blank" href="/view/link/5e58801de4b02bc3ad66d998"
+          >未命名文件</a
+        ></span
+      ></span
+    >
+    <div class="embed_resize">
+      <span class="pro-btn" onclick="resizeMin()"
+        ><span class="iconfont icon-jianshao-"></span
+      ></span>
+      <label>100%</label>
+      <span class="pro-btn" onclick="resizeMax()"
+        ><span class="iconfont icon-xinjianmoban-"></span
+      ></span>
+    </div>
+    <div id="viewport">
+      <div
+        id="view_container"
+        class="pos_relative"
+        style="overflow: auto; width: 100%"
+      >
+        <div id="designer_canvas"></div>
+      </div>
+      <div id="shape_img_container" style="height: 0px; overflow: hidden"></div>
+    </div>
+  </body>
+</html>
