@@ -66,6 +66,7 @@ yarn start
 
 ## TODO
 
+- ✅ 支持 POS 文件导入
 - [ ] websocket 多人同步编辑
 - [ ] 文件上传
 - [ ] 生成缩略图
@@ -75,4 +76,10 @@ yarn start
 
 备注来源
 
-![IMG_4087.JPG](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df2e75377aa5496aa0d82c8ae3d50f47~tplv-k3u1fbpfcp-watermark.image?)
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a856f92420f485cba31fe5a8ee01511~tplv-k3u1fbpfcp-watermark.image?)
+
+## 我的微信公众号
+
+定位前端工程师进阶
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1484497c4f647cc87aeb5f746f220de~tplv-k3u1fbpfcp-watermark.image?)

@@ -61,3 +61,22 @@ $.get("/api/user/me", (res) => {
     });
   }
 });
+
+$(document).ready(() => {
+  document.getElementById("selectFiles").onchange = function (e) {
+    var files = e.target.files;
+    if (files.length <= 0) {
+      return false;
+    }
+
+    var fr = new FileReader();
+
+    fr.onload = function (e) {
+      const result = JSON.parse(e.target.result);
+      Designer.open(result.diagram.elements);
+    };
+
+    fr.readAsText(files.item(0));
+    e.target.value = null;
+  };
+});
