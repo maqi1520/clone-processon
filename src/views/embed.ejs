@@ -68,7 +68,8 @@
       src="/scripts_bin/zh/diagraming/designer.methods.js?_=1636294824"
     ></script>
     <script type="text/javascript">
-      var chartId = Util.getUrlParams("id");
+      // var chartId = Util.getUrlParams("id");
+      var chartId = "<%= chartId %>";
       var localRuntime = false;
       var isView = true;
       var role = "viewer";
@@ -336,7 +337,7 @@
     <canvas id="support_canvas" style="display: none"></canvas>
     <span class="embed_title" title="点击在新页面打开源文件" title_pos="right"
       ><span
-        ><a target="_blank" href="/view/link/5e58801de4b02bc3ad66d998"
+        ><a class="title" target="_blank" href="/view/<%= chartId %>"
           >未命名文件</a
         ></span
       ></span

@@ -3127,7 +3127,7 @@ var UI = {
       onSelect: function (b) {
         var c = b.attr("ac");
         if (c == "dia") {
-          location.href = "/diagrams";
+          location.href = "/";
         } else {
           if (c == "net") {
             location.href = "/network";

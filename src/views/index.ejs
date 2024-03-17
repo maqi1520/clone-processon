@@ -7,6 +7,10 @@
     * {
       margin: 0;
       padding: 0;
+      font-size: 12px;
+    }
+    a {
+      color: #067bef;
     }
     header {
       margin: 24px 0;
@@ -26,17 +30,36 @@
     input[type="email"],
     input[type="text"] {
       padding: 8px 12px;
-
-      border: 1px solid;
+      border: 1px solid #d9d9d9;
       min-width: 220px;
+    }
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="text"]:focus {
+      outline-offset: 2px;
+      outline: 2px solid #067bef;
+    }
+    .btn:hover {
+      color: #067bef;
+      border: 1px solid #067bef;
     }
     .btn {
       cursor: pointer;
-      padding: 8px 12px;
-      color: #fff;
-      background-color: #2da44e;
+      padding: 6px 12px;
+      background-color: #fff;
+      border: 1px solid #eee;
+      color: #212930;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 2px;
+    }
+    .btn-primary {
+      background: #067bef;
+      color: #fff;
+      border: 1px solid #067bef;
+    }
+    .btn-primary:hover {
+      color: #fff;
+      border: 1px solid #067bef;
     }
     #list > div,
     form > div {
@@ -65,12 +88,22 @@
     .max-w-5xl {
       max-width: 1024px;
     }
+    h1 {
+      font-size: 16px;
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      border: 2px solid #eee;
+      background: rgba(6, 122, 239, 0.2);
+    }
   </style>
   <body>
     <div class="max-w-5xl mx-auto">
       <header class="flex justify-between items-center">
         <h1>Clone ProcessOn</h1>
-        <span id="user-info"></span>
+        <span class="flex items-center" id="user-info"></span>
       </header>
       <div id="container"></div>
     </div>
@@ -125,8 +158,8 @@
             <form method="POST" action="/api/auth/signin">
               <div><input value="test@test.com" placeholder="邮箱" type="email" name="email" /></div>
               <div><input value="test123" placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
-              <div><input type="submit" value="登录" /></div>
-              <div><a class="btn" href="/api/github/login">github 账号登录</a></div>
+              <div><input type="submit" class="btn btn-primary" value="登录" /></div>
+              <div><a class="btn" href="/api/github/login">GitHub 账号登录</a></div>
               <div>如果您没有账号，您可以 <a href="javascript:showRegister()">立即注册</a></div>
             </form>
           </div>`
@@ -141,7 +174,7 @@
             <div><input placeholder="邮箱" type="email" name="email" /></div>
             <div><input placeholder="昵称" maxLength="20" type="text" name="name" /></div>
             <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
-            <div><input type="submit" value="注册" /></div>
+            <div><input type="submit" class="btn btn-primary" value="注册" /></div>
             <div>已有账号，您可以 <a href="javascript:showLogin()">立即登录</a></div>
             <div>测试账号：test@test.com 密码 test123</div>
           </form>
@@ -154,8 +187,9 @@
             let html = "";
             list.forEach((item) => {
               html += `<div class="flex justify-between">
-            <a href="/processOn.html?id=${item.id}">${item.title}</a>
+            <a href="/diagraming/${item.id}">${item.title}</a>
             <span><span>${new Date(item.lastModify).toLocaleString()}</span>
+            <a href="/view/${item.id}">查看</a>
             <a class="ml-2 js-remove" href="javascript:;" data-id="${
               item.id
             }">删除</a></span>
@@ -187,7 +221,7 @@
               title: "未命名文件",
             },
             (res) => {
-              window.location.href = `/processOn.html?id=${res.id}`;
+              window.location.href = `/diagraming/${res.id}`;
             }
           );
         });
@@ -202,12 +236,13 @@
       function getUser() {
         $.get("/api/user/me", (res) => {
           $("#user-info").html(
-            `<span>${res.name}</span>
-            <button  class="ml-2" id="signout">退出</button> `
+            `
+            <img class="avatar" src="https://api.dicebear.com/7.x/notionists/svg?seed=${res.email}" alt="${res.name}"/>
+            <button  class="ml-2 btn" id="signout">退出</button> `
           );
           $("#container").html(
             `<div> 
-                <div> <button class="btn" id="create">新建流程图</button></div> 
+                <div> <button class="btn btn-primary" id="create">新建流程图</button></div> 
                 <div id="list"></div>
               </div>`
           );

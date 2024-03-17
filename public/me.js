@@ -1,4 +1,4 @@
-var chartId = Util.getUrlParams("id");
+// var chartId = Util.getUrlParams("id");
 var userId = "5981853de4b06886663b8419";
 var userName = "小马";
 var teamId = "";
