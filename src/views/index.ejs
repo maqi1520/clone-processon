@@ -211,7 +211,7 @@
             <h2>欢迎回来</h2>
             <form method="POST" action="/api/auth/signin">
               <div><input value="test@test.com" placeholder="邮箱" type="email" name="email" /></div>
-              <div><input value="test123" placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
+              <div><input value="123456" placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
               <div><button type="submit" class="btn btn-primary block w-full">登录</button></div>
               <div class="js-message"></div>
               <div><a class="btn block w-full" href="/api/github/login">GitHub 账号登录</a></div>
@@ -233,7 +233,7 @@
             <div><button type="submit" class="btn btn-primary block w-full">注册</button></div>
             <div>已有账号，您可以 <a href="javascript:showLogin()">立即登录</a></div>
             <div class="js-message"></div>
-            <div>测试账号：test@test.com 密码 test123</div>
+            <div>测试账号：test@test.com 密码 123456</div>
           </form>
         </div></div>`);
       }

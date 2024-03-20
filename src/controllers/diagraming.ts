@@ -21,6 +21,11 @@ router.get("/", protect, async (req: Req, res) => {
         title: true,
         lastModify: true,
       },
+      orderBy: [
+        {
+          lastModify: "desc",
+        },
+      ],
     });
 
     res.json({
@@ -183,6 +188,7 @@ router.post("/msg", protect, async (req: Req, res) => {
       elements: result.elements,
       page: result.page,
       theme: result.theme ? result.theme : undefined,
+      lastModify: new Date(),
     },
   });
 
