@@ -25,12 +25,6 @@ app.use("/api/user", user);
 app.use("/api/github", github);
 app.use("/diagraming", diagraming);
 
-app.get("/diagraming/:id", function (req, res) {
-  return res.render("diagraming", {
-    chartId: req.params.id,
-  });
-});
-
 app.get("/view/:id", function (req, res) {
   return res.render("view", {
     chartId: req.params.id,

@@ -4,25 +4,37 @@
     <title>Clone ProcessOn</title>
   </head>
   <style>
+    :root {
+      --primary-color: #067bef;
+      --border: #eee;
+      --input: #d9d9d9;
+      --error: #dc2626;
+    }
     * {
       margin: 0;
       padding: 0;
       font-size: 12px;
+      box-sizing: border-box;
     }
     a {
-      color: #067bef;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     header {
       margin: 24px 0;
     }
     body {
       font-size: 14px;
+      background-color: #f6f7f8;
     }
     input[type="submit"],
     button {
       padding: 8px 24px;
       font-size: 14px;
-      border: 1px solid;
+      border: 1px solid var(--border);
       cursor: pointer;
       border-radius: 4px;
     }
@@ -30,38 +42,50 @@
     input[type="email"],
     input[type="text"] {
       padding: 8px 12px;
-      border: 1px solid #d9d9d9;
-      min-width: 220px;
+      border: 1px solid var(--input);
+      width: 100%;
     }
     input[type="password"]:focus,
     input[type="email"]:focus,
     input[type="text"]:focus {
       outline-offset: 2px;
-      outline: 2px solid #067bef;
+      outline: 2px solid var(--primary-color);
+    }
+    .block {
+      display: block;
+    }
+    .w-full {
+      width: 100%;
     }
     .btn:hover {
-      color: #067bef;
-      border: 1px solid #067bef;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
     }
     .btn {
       cursor: pointer;
-      padding: 6px 12px;
-      background-color: #fff;
-      border: 1px solid #eee;
+      padding: 8px 12px;
+      background-color: #f1f1f1;
+      border: 1px solid var(--border);
       color: #212930;
       text-decoration: none;
       border-radius: 2px;
+      text-align: center;
     }
     .btn-primary {
-      background: #067bef;
+      background: var(--primary-color);
       color: #fff;
-      border: 1px solid #067bef;
+      border: 1px solid var(--primary-color);
     }
     .btn-primary:hover {
       color: #fff;
-      border: 1px solid #067bef;
+      border: 1px solid var(--primary-color);
     }
-    #list > div,
+    #list {
+      margin-top: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
     form > div {
       margin-top: 24px;
     }
@@ -88,6 +112,13 @@
     .max-w-5xl {
       max-width: 1024px;
     }
+    .w-2\/5 {
+      width: 40%;
+      border: 1px solid var(--border);
+      padding: 24px;
+      background: #fff;
+      margin: auto;
+    }
     h1 {
       font-size: 16px;
     }
@@ -95,8 +126,26 @@
       width: 30px;
       height: 30px;
       border-radius: 100%;
-      border: 2px solid #eee;
+      border: 2px solid var(--border);
       background: rgba(6, 122, 239, 0.2);
+    }
+    .border-b {
+      border-bottom: 1px solid var(--border);
+      line-height: 2.5;
+    }
+    .border-b:last-child {
+      border: 0;
+    }
+    .login-warper {
+      display: flex;
+      height: 80vh;
+    }
+    .message {
+      border: 1px solid var(--error);
+      padding: 8px 12px;
+      color: var(--error);
+      background-color: #fee2e2;
+      border-radius: 2px;
     }
   </style>
   <body>
@@ -122,6 +171,7 @@
         }
       });
       $(document).on("submit", "form", function (e) {
+        $(".js-message").html("");
         e.preventDefault();
         let oForm = $(this);
         let url = oForm.attr("action");
@@ -130,7 +180,9 @@
         let formData = {};
         for (const item of data) {
           if (item.value === "") {
-            alert(`请输入${item.name}`);
+            $(".js-message").html(
+              `<div class="message">请输入${item.name}</div>`
+            );
             return;
           } else {
             formData[item.name] = item.value;
@@ -142,7 +194,9 @@
           data,
           success: (res) => {
             if (res.message) {
-              alert(res.message);
+              $(".js-message").html(
+                `<div class="message">${res.message}</div>`
+              );
             }
             if (res.success) {
               getUser();
@@ -153,32 +207,35 @@
       function showLogin() {
         $("#user-info").html("");
         $("#container").html(
-          `<div>
+          `<div class="login-warper"><div class="w-2/5">
             <h2>欢迎回来</h2>
             <form method="POST" action="/api/auth/signin">
               <div><input value="test@test.com" placeholder="邮箱" type="email" name="email" /></div>
               <div><input value="test123" placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
-              <div><input type="submit" class="btn btn-primary" value="登录" /></div>
-              <div><a class="btn" href="/api/github/login">GitHub 账号登录</a></div>
+              <div><button type="submit" class="btn btn-primary block w-full">登录</button></div>
+              <div class="js-message"></div>
+              <div><a class="btn block w-full" href="/api/github/login">GitHub 账号登录</a></div>
               <div>如果您没有账号，您可以 <a href="javascript:showRegister()">立即注册</a></div>
             </form>
-          </div>`
+          </div></div>`
         );
       }
 
       function showRegister() {
         $("#container").html(`
-        <div>
+        <div class="login-warper">
+        <div class="w-2/5">
           <h2>创建一个账号</h2>
           <form method="POST" action="/api/auth/register">
             <div><input placeholder="邮箱" type="email" name="email" /></div>
             <div><input placeholder="昵称" maxLength="20" type="text" name="name" /></div>
             <div><input placeholder="密码" minLength="6" maxLength="20" type="password" name="password" /></div>
-            <div><input type="submit" class="btn btn-primary" value="注册" /></div>
+            <div><button type="submit" class="btn btn-primary block w-full">注册</button></div>
             <div>已有账号，您可以 <a href="javascript:showLogin()">立即登录</a></div>
+            <div class="js-message"></div>
             <div>测试账号：test@test.com 密码 test123</div>
           </form>
-        </div>`);
+        </div></div>`);
       }
       function getList() {
         $.get("/diagraming", (res) => {
@@ -186,10 +243,10 @@
           if (list.length > 0) {
             let html = "";
             list.forEach((item) => {
-              html += `<div class="flex justify-between">
+              html += `<div class="flex justify-between border-b">
             <a href="/diagraming/${item.id}">${item.title}</a>
             <span><span>${new Date(item.lastModify).toLocaleString()}</span>
-            <a href="/view/${item.id}">查看</a>
+            <a class="ml-2" href="/view/${item.id}">查看</a>
             <a class="ml-2 js-remove" href="javascript:;" data-id="${
               item.id
             }">删除</a></span>
@@ -242,7 +299,7 @@
           );
           $("#container").html(
             `<div> 
-                <div> <button class="btn btn-primary" id="create">新建流程图</button></div> 
+                <div> <button class="btn btn-primary" id="create">+ 新建流程图</button></div> 
                 <div id="list"></div>
               </div>`
           );

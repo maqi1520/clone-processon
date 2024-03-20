@@ -5,6 +5,7 @@ import { protect, Req } from "../middleware/auth";
 import { DigramingMessage } from "../types/digramingMsg";
 
 const router = express.Router();
+
 /**
  * 流程图列表
  */
@@ -293,6 +294,13 @@ router.get("/chart_my_shapes", protect, async (req: Req, res) => {
     pageCount: 0,
     definition: [],
     curPage,
+  });
+});
+
+router.get("/:id", protect, async (req: Req, res) => {
+  return res.render("diagraming", {
+    user: req.user,
+    chartId: req.params.id,
   });
 });
 

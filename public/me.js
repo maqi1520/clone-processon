@@ -1,6 +1,6 @@
 // var chartId = Util.getUrlParams("id");
-var userId = "5981853de4b06886663b8419";
-var userName = "小马";
+// var userId = "5981853de4b06886663b8419";
+// var userName = "小马";
 var teamId = "";
 var orgId = "";
 var role = "owner";
@@ -50,17 +50,17 @@ $(document).on("ajaxError", function (e, request) {
 
 let ajaxtoLoacl = {};
 
-$.get("/api/user/me", (res) => {
-  console.log(res);
-  userId = res.id;
-  userName = res.name;
-  $("#user-name").html(res.name);
-  if (res.avatar_url) {
-    $(".js-user-avater").each(function () {
-      $(this).attr("src", res.avatar_url);
-    });
-  }
-});
+// $.get("/api/user/me", (res) => {
+//   console.log(res);
+//   userId = res.id;
+//   userName = res.name;
+//   $("#user-name").html(res.name);
+//   if (res.avatar_url) {
+//     $(".js-user-avater").each(function () {
+//       $(this).attr("src", res.avatar_url);
+//     });
+//   }
+// });
 
 $(document).ready(() => {
   document.getElementById("selectFiles").onchange = function (e) {

@@ -75,6 +75,8 @@
     ></script>
     <script>
       var chartId = "<%= chartId %>";
+      var userId = "<%= user.id %>";
+      var userName = "<%= user.name %>";
     </script>
     <script src="/me.js"></script>
     <link
@@ -221,7 +223,7 @@
           <div class="user" onmousedown="UI.showUserMenu(event)">
             <img
               class="js-user-avater"
-              src="https://api.dicebear.com/7.x/notionists/svg?seed=maqibin1520@gmail.com"
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=<%= user.email %>"
             />
             <div class="ico ico_accordion"></div>
           </div>
@@ -2999,14 +3001,15 @@
           >
             <img
               class="js-user-avater"
-              src="https://api.dicebear.com/7.x/notionists/svg?seed=maqibin1520@gmail.com"
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=<%= user.email %>"
             />&nbsp;
             <a
               id="user-name"
               style="font-size: 14px; color: #222"
               href="/u/profile"
               target="_blank"
-            ></a>
+              ><%= user.name %></a
+            >
           </div>
         </li>
         <li class="devider"></li>
