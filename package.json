@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "nodemon",
     "build": "rm -rf dist && tsc --project tsconfig.json && copyfiles -f src/views/*.ejs dist/views",
     "start": "node dist/index.js",

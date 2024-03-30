@@ -4,3 +4,4 @@ tests/
 *.env*
 !.env.example
 !migrations/
+.vercel
