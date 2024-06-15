@@ -16,6 +16,9 @@
     "exec": "ts-node --project tsconfig.json src/index.ts",
     "ext": "js ts"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "4.4.0",
     "@types/node": "14.17.32",

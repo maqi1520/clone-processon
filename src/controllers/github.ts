@@ -9,7 +9,7 @@ const config = {
   client_secret: process.env.GITHUB_CLIENT_SECRET,
 };
 
-type GithubTonenResponse = {
+type GithubTokenResponse = {
   access_token: string;
   scope: string;
   token_type: string;
@@ -32,7 +32,7 @@ authRouter.get("/oauth/callback", async (req, res) => {
     code: code,
   };
   // 拿着code 请求token
-  let result = await axios.post<GithubTonenResponse>(
+  let result = await axios.post<GithubTokenResponse>(
     "https://github.com/login/oauth/access_token",
     params,
     {
