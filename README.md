@@ -1,4 +1,4 @@
-# Clone processon
+# [clone processon](https://github.com/maqi1520/clone-processon)
 
 NodeJS 版在线流程图，模仿 https://www.processon.com/
 
@@ -14,12 +14,61 @@ NodeJS 版在线流程图，模仿 https://www.processon.com/
 
 ## 部署
 
-- 没有装 postgresql 可以使用 `docker-compose.yml` 启一个容器服务
+安装 docker docker-compose
 
+```yml
+# Use postgres/example user/password credentials
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: pro
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  app:
+    image: maqi1520/cloneprocesson
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://admin:example@db:5432/pro?schema=public"
+      JWT_SECRET: "xxxx"
+      GITHUB_CLIENT_ID: "xxxx"
+      GITHUB_CLIENT_SECRET: "xxxx"
+      DOMAIN: "http://localhost:3000"
+      EMAIL_USER: "xxxx@163.com"
+      EMAIL_USER_NAME: "xxxxx"
+      EMAIL_HOST: "smtp.163.com"
+      EMAIL_PASS: "xxxx"
+    depends_on:
+      - db
+volumes:
+  pg_data:
 ```
+
+启动
+
+```bash
 docker-compose up -d
 ```
 
+## 本地开发
+
+- 安装 nodejs 环境
+- 安装 yarn
 - 复制 .env.example 命名为 .env
 
 ```
@@ -46,12 +95,16 @@ GITHUB_CLIENT_ID="xxxxxxxxxx"
 GITHUB_CLIENT_SECRET="xxxxxxxxx"
 ```
 
-## 本地开发
-
 - 安装依赖
 
 ```
 yarn install
+```
+
+- 初始化数据
+
+```
+npx prisma db seed
 ```
 
 - 打包

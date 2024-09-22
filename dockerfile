@@ -1,8 +1,5 @@
-# 使用轻量级 Node.js 镜像
-FROM node:18-alpine
-
-# 使用 apk 包管理器来安装 openssl
-RUN apk update && apk add --no-cache openssl
+# 使用 Node.js 镜像
+FROM node:18
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
