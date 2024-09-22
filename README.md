@@ -46,6 +46,8 @@ GITHUB_CLIENT_ID="xxxxxxxxxx"
 GITHUB_CLIENT_SECRET="xxxxxxxxx"
 ```
 
+## 本地开发
+
 - 安装依赖
 
 ```
@@ -62,6 +64,26 @@ yarn build
 
 ```
 yarn start
+```
+
+### 其他说明
+
+Prisma 迁移: 使用 `npx prisma migrate deploy` 命令来确保数据库架构已更新。如果你在开发环境中使用了 `npx prisma migrate dev`，则在生产环境中应使用 `npx prisma migrate deploy`。
+
+Prisma Client 生成: `npx prisma generate` 会在构建时生成 Prisma Client，确保你在应用代码中使用的 Prisma Client 已就绪。
+
+## docker 部署
+
+构建 Docker 镜像：
+
+```bash
+docker build -t cloneprocesson .
+```
+
+运行 Docker 容器（确保 Postgres 数据库已启动并配置好）：
+
+```bash
+docker run -p 3000:3000 --env-file .env cloneprocesson
 ```
 
 ## TODO
