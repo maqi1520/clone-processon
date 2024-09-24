@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>注册 - Clone ProcessOn</title>
+    <link href="/assets/css/index.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="flex items-center justify-center h-screen">
+      <div class="w-[460px] bg-white p-6 rounded shadow">
+        <h2 class="text-2xl mb-4">创建一个账号</h2>
+        <form method="POST" action="/api/auth/register">
+          <div class="mb-4">
+            <input
+              class="w-full p-2 border rounded"
+              placeholder="邮箱"
+              type="email"
+              name="email"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              class="w-full p-2 border rounded"
+              placeholder="昵称"
+              maxLength="20"
+              type="text"
+              name="name"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              class="w-full p-2 border rounded"
+              placeholder="密码"
+              minLength="6"
+              maxLength="20"
+              type="password"
+              name="password"
+            />
+          </div>
+          <div class="mb-4">
+            <button
+              type="submit"
+              class="w-full bg-blue-500 text-white p-2 rounded"
+            >
+              注册
+            </button>
+          </div>
+          <div class="mb-4">
+            已有账号，您可以 <a class="text-blue-500" href="/login">立即登录</a>
+          </div>
+          <div
+            class="js-message mb-4 bg-red-50 px-4 py-3 rounded-md border border-red-100 text-red-500 hidden"
+          ></div>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts_bin/zh/jquery.js"></script>
+    <script>
+      $(document).on("submit", "form", function (e) {
+        $(".js-message").html("").hide();
+        e.preventDefault();
+        let oForm = $(this);
+        let url = oForm.attr("action");
+        let method = oForm.attr("method");
+        let data = oForm.serializeArray();
+        let formData = {};
+        for (const item of data) {
+          if (item.value === "") {
+            $(".js-message").html(`请输入${item.name}`).show();
+            return;
+          } else {
+            formData[item.name] = item.value;
+          }
+        }
+        $.ajax({
+          url,
+          type: method,
+          data,
+          success: (res) => {
+            if (res.message) {
+              $(".js-message").html(res.message).show();
+            }
+            if (res.success) {
+              window.location.href = "/login";
+            }
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

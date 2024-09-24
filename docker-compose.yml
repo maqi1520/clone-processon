@@ -21,7 +21,9 @@ services:
       - 8080:8080
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:

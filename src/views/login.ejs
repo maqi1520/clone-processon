@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>登录 - Clone ProcessOn</title>
+    <link href="/assets/css/index.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="flex items-center justify-center h-screen">
+      <div class="w-[460px] bg-white p-6 rounded shadow">
+        <h2 class="text-2xl mb-4">欢迎回来</h2>
+        <form method="POST" action="/api/auth/signin">
+          <div class="mb-4">
+            <input
+              class="w-full p-2 border rounded"
+              value="test@test.com"
+              placeholder="邮箱"
+              type="email"
+              name="email"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              class="w-full p-2 border rounded"
+              value="123456"
+              placeholder="密码"
+              minLength="6"
+              maxLength="20"
+              type="password"
+              name="password"
+            />
+          </div>
+          <div class="mb-4">
+            <button
+              type="submit"
+              class="w-full bg-blue-500 text-white p-2 rounded"
+            >
+              登录
+            </button>
+          </div>
+          <div
+            class="js-message mb-4 bg-red-50 px-4 py-3 rounded-md border border-red-100 text-red-500 hidden"
+          ></div>
+          <div class="mb-4">
+            <a
+              class="w-full block text-center bg-gray-200 p-2 rounded"
+              href="/api/github/login"
+              >GitHub 账号登录</a
+            >
+          </div>
+          <div>
+            如果您没有账号，您可以
+            <a class="text-blue-500" href="/register">立即注册</a>
+          </div>
+          <div class="mt-4">测试账号：test@test.com 密码 123456</div>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts_bin/zh/jquery.js"></script>
+    <script>
+      $(document).on("submit", "form", function (e) {
+        $(".js-message").html("").hide();
+        e.preventDefault();
+        let oForm = $(this);
+        let url = oForm.attr("action");
+        let method = oForm.attr("method");
+        let data = oForm.serializeArray();
+        let formData = {};
+        for (const item of data) {
+          if (item.value === "") {
+            $(".js-message").html(`请输入${item.name}`).show();
+            return;
+          } else {
+            formData[item.name] = item.value;
+          }
+        }
+        $.ajax({
+          url,
+          type: method,
+          data,
+          success: (res) => {
+            if (res.message) {
+              $(".js-message").html(res.message).show();
+            }
+            if (res.success) {
+              window.location.href = "/";
+            }
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

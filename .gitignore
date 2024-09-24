@@ -5,3 +5,4 @@ tests/
 !.env.example
 !migrations/
 .vercel
+public/assets/css/index.css
